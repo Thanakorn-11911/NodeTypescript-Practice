@@ -22,5 +22,5 @@ app.use ((req:CustomDbRequest, res:Response, next: NextFunction) => {
 app.use('/api',bodyParser.json(), ApiRouter)
 
 app.listen(port, () => {
-    console.log(`Web listening on port http://localhost:${port}/`)
+    console.log(`App listening on port http://localhost:${port}/`)
 })
