@@ -6,8 +6,8 @@ const ctrl: {[key: string]: any} = {};
 
 ctrl.singIn = async (req:CustomDbRequest,res:express.Response) => {
     try {
-        const {mysqldb} = req
-        let result = await AuthService.onSingIn(mysqldb,req.body)
+
+        let result = await AuthService.onSingIn(req.mysqldb,req.body)
 
         res.json(result)
         

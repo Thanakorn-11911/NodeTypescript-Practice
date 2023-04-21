@@ -1,4 +1,4 @@
-import knex from "knex";
+import knex, { Knex } from "knex";
 
 const db = (config:any): any => {
 
@@ -13,9 +13,29 @@ const db = (config:any): any => {
         } catch (error) {
             console.log('error: ',error)
         }
-    }, 60_000)
+    }, 10_000)
 
     return dbconnect
 }
   
-  export default db;
+const createUserTables = async (knex: Knex): Promise<void> =>{
+  await knex.schema.createTable('users', (table) => {
+    table.increments('id').primary();
+    table.string('name').notNullable();
+    table.string('email').notNullable().unique();
+    table.string('password').notNullable();
+    table.timestamp('created_at').defaultTo(knex.fn.now());
+    table.timestamp('updated_at').defaultTo(knex.fn.now());
+  });
+}
+
+const dropUserTables = async (knex: Knex): Promise<void> => {
+  await knex.schema.dropTable('users');
+}
+
+
+export default {
+    db,
+    createUserTables,
+    dropUserTables
+};

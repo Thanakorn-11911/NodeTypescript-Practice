@@ -1,7 +1,15 @@
+import { CustomDbRequest } from "../lib/interface";
+import express from 'express'
+
 const ctrl: {[key: string]: any} = {};
 
-// import {WaterBillRequest,WaterBillResponse} from '../lib/interface'
-import express from 'express'
+ctrl.scsApi = async(req:CustomDbRequest, res:express.Response) => {
+
+  let result = await req.mysqldb('staff').where({id: 1})
+
+  console.log(result,':result')
+
+}
 
 ctrl.waterBill = async (req:express.Request, res:express.Response) => {
     try {
