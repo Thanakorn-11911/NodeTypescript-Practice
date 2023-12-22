@@ -19,6 +19,8 @@ https://javascript.plainenglish.io/typed-express-request-and-response-with-types
 - GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%';
 - flush privileges;
 
+SELECT User, Host FROM mysql.user;
+
 *fix auth plugin caching_sha2_passsword 
 - select user,host,plugin from mysql.user;
 - alter user 'admin'@'%' identified with mysql_native_password by 'password';

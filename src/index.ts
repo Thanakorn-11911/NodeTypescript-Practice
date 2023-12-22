@@ -1,5 +1,6 @@
 import express, {Application, Request, Response, NextFunction} from 'express'
 import bodyParser from 'body-parser'
+import cors from 'cors'
 
 import DB from './lib/db'
 import config from './config'
@@ -9,6 +10,7 @@ import ApiRouter from './api/index'
 
 const app: Application = express()
 const port = config.server.port
+app.use(cors())
 
 const mysqldb = DB.db(config.mysqldb)
 
@@ -19,13 +21,23 @@ app.use ((req:CustomDbRequest, res:Response, next: NextFunction) => {
     next()
 })
 
+let token = `aaaaaaaaaaa`
+
 // app.use('/',async (req:CustomDbRequest, res:Response)=>{
-//    await DB.createUserTables(req.mysqldb)
-//    .then(() => console.log('Table created successfully'))
-//    .catch(error => console.error(error))
-    // await req.mysqldb('users')
-    // .insert({name: 'admin', email:'kuy@gmail.com', password:'dev1234', created_at: req.mysqldb.fn.now(), updated_at: req.mysqldb.fn.now()})
-    // .then(()=>console.log('insert successfully'))
+
+
+//     console.log(req.body);
+    
+
+//     // if(true) token = req.body
+
+//     // res.json({status: 'ok'})
+// //    await DB.createUserTables(req.mysqldb)
+// //    .then(() => console.log('Table created successfully'))
+// //    .catch(error => console.error(error))
+// //     await req.mysqldb('users')
+// //     .insert({name: 'admin', email:'kuy@gmail.com', password:'dev1234', created_at: req.mysqldb.fn.now(), updated_at: req.mysqldb.fn.now()})
+// //     .then(()=>console.log('insert successfully'))
 // })
 
 
